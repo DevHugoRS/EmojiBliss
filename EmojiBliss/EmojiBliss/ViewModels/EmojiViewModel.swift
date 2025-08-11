@@ -37,4 +37,12 @@ class EmojiViewModel: ObservableObject {
         guard !emojis.isEmpty else { return nil }
         return emojis.randomElement()
     }
+    
+    func removeEmojiFromMemory(_ emoji: Emoji) {
+        emojis.removeAll { $0.id == emoji.id }
+    }
+    
+    func reloadFromCache() async {
+        emojis = CoreDataManager.shared.searchEmojis()
+    }
 }

@@ -14,17 +14,31 @@ struct EmojiListView: View {
 //    MARK: - BODY
     var body: some View {
         ScrollView {
-            LazyVGrid(columns: [GridItem(.adaptive(minimum: 60))]) {
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 60))], spacing: 10) {
                 ForEach(viewModel.emojis) { emoji in
-                    AsyncImage(url: URL(string: emoji.url))
-                        .frame(width: 50, height: 50)
-                        .onTapGesture {
-                            // remove
+                    VStack {
+                        AsyncImage(url: URL(string: emoji.url)) { image in
+                            image
+                                .resizable()
+                                .scaledToFit()
+                        } placeholder: {
+                            ProgressView()
+                                .frame(width: 50, height: 50)
                         }
+                        .onTapGesture {
+                            withAnimation {
+                                viewModel.removeEmojiFromMemory(emoji)
+                            }
+                        }
+                    } //: VSTACK
                 } //: LOOP
             } //: GRID
+            .padding()
         } //: SROLL
         .navigationTitle("Emojis")
+        .refreshable {
+            await viewModel.reloadFromCache()
+        }
         .task {
             await viewModel.getEmojis()
         }
