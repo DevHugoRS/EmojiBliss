@@ -12,9 +12,7 @@ struct CachedAsyncImage: View {
     
     var body: some View {
         AsyncImage(url: url) { image in
-            image
-                .resizable()
-                .scaledToFit()
+            image.resizable().scaledToFit()
         } placeholder: {
             ProgressView()
         }

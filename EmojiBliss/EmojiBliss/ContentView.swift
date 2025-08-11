@@ -9,13 +9,14 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+        NavigationStack {
+            List {
+                NavigationLink("Random Emoji", destination: RandomEmojiView())
+                NavigationLink("Emoji List", destination: EmojiListView())
+                
+            } //: LIST
+            .navigationTitle("Emoji Bliss")
+        } //: NAV. STACK
     }
 }
 

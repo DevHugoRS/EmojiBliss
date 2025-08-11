@@ -34,6 +34,7 @@ class EmojiViewModel: ObservableObject {
     }
     
     func getRandomEmoji() -> Emoji? {
-        emojis.randomElement()
+        guard !emojis.isEmpty else { return nil }
+        return emojis.randomElement()
     }
 }
