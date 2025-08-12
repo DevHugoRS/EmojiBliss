@@ -7,8 +7,13 @@
 
 import Foundation
 
-struct UserAvatar: Identifiable, Codable { //: Busca o Avatar
+struct UserAvatar: Identifiable, Codable, Equatable { //: Busca o Avatar
     let id: Int
     let login: String
     let avatarUrl: String
+    
+    enum CodingKeys: String, CodingKey {
+        case id, login
+        case avatarUrl = "avatar_url"
+    }
 }

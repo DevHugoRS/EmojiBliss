@@ -13,7 +13,8 @@ struct ContentView: View {
             List {
                 NavigationLink("Random Emoji", destination: RandomEmojiView())
                 NavigationLink("Emoji List", destination: EmojiListView())
-                
+                NavigationLink("Search Avatar", destination: AvatarSearchView())
+                NavigationLink("Avatar List", destination: AvatarListView())
             } //: LIST
             .navigationTitle("Emoji Bliss")
         } //: NAV. STACK

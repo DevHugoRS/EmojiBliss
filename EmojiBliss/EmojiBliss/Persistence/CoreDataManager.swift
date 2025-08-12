@@ -35,7 +35,7 @@ class CoreDataManager {
         }
     } //: FUNC SAVE CONDITIONS
     
-//    MARK: EMOJI FUNCTIONS
+//    MARK: - EMOJI FUNCTIONS
     func saveEmojis(_ emojis: [Emoji]) {
         clearEmojis()
         
@@ -71,3 +71,62 @@ class CoreDataManager {
         }
     }
 } //: CLASS COREDATA MANAGER
+
+// MARK: - AVATAR FUNCTIONS
+
+extension CoreDataManager {
+    func saveAvatar(_ avatar: UserAvatar) {
+//        let existing = searchAvatarById(avatar.id)
+//        if existing != nil { return }
+        let requisition: NSFetchRequest<AvatarEntity> = AvatarEntity.fetchRequest()
+        requisition.predicate = NSPredicate(format: "id == %d", avatar.id)
+        requisition.fetchLimit = 1
+        
+        let entity = (try? conditions.fetch(requisition).first) ?? AvatarEntity(context: conditions)
+        entity.id = Int64(avatar.id)
+        entity.login = avatar.login
+        entity.avatarURL = avatar.avatarUrl
+        saveCondition()
+    } //: FUNC SAVE AVATAR
+    
+    func searchAvatar() -> [UserAvatar] {
+        let requisition: NSFetchRequest<AvatarEntity> = AvatarEntity.fetchRequest()
+        do {
+            return try conditions.fetch(requisition).map {
+                UserAvatar(id: Int($0.id),
+                           login: $0.login ?? "",
+                           avatarUrl: $0.avatarURL ?? "")
+            }
+        } catch {
+            print("Error fetching Avatars: \(error.localizedDescription)")
+        }
+        return []
+    } //: FUNC SEARCH AVATAR
+    
+    func searchAvatarById(_ id: Int) -> UserAvatar? {
+        let requisition: NSFetchRequest<AvatarEntity> = AvatarEntity.fetchRequest()
+        requisition.predicate = NSPredicate(format: "id == %d", id)
+        requisition.fetchLimit = 1
+        do {
+            if let avatarEntity = try conditions.fetch(requisition).first {
+                return UserAvatar(id: Int(avatarEntity.id), login: avatarEntity.login ?? "", avatarUrl: avatarEntity.avatarURL ?? "")
+            }
+        } catch {
+            print("Error fetching Avatars: \(error.localizedDescription)")
+        }
+        return nil
+    } //: FUNC SEARCH AVATAR BY ID
+    
+    func deleteAvatar(_ avatar: UserAvatar) {
+        let requisition: NSFetchRequest<AvatarEntity> = AvatarEntity.fetchRequest()
+        requisition.predicate = NSPredicate(format: "id == %d", avatar.id)
+        do {
+            if let entity = try conditions.fetch(requisition).first {
+                conditions.delete(entity)
+                saveCondition()
+            }
+        } catch {
+            print("Error deleting Avatar: \(error.localizedDescription)")
+        }
+    } //: FUNC DELETE AVATAR
+}

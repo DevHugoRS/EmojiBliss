@@ -10,5 +10,5 @@ import Foundation
 struct Repository: Identifiable, Codable { // Repositorio Apple
     let id: String
     let fullName: String
-    //let private: bool
+    let `private`: Bool
 }
