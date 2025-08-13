@@ -7,8 +7,16 @@
 
 import Foundation
 
-struct Repository: Identifiable, Codable { // Repositorio Apple
-    let id: String
+struct Repository: Identifiable, Codable, Equatable { // Repositorio Apple
+    let id: Int
     let fullName: String
-    let `private`: Bool
+    let isPrivate: Bool
+    let description: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case fullName = "full_name"
+        case isPrivate = "private"
+        case description
+    }
 }

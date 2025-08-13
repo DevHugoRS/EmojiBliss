@@ -15,6 +15,7 @@ struct ContentView: View {
                 NavigationLink("Emoji List", destination: EmojiListView())
                 NavigationLink("Search Avatar", destination: AvatarSearchView())
                 NavigationLink("Avatar List", destination: AvatarListView())
+                NavigationLink("Apple Repository", destination: RepositoryListView())
             } //: LIST
             .navigationTitle("Emoji Bliss")
         } //: NAV. STACK
