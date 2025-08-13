@@ -43,6 +43,6 @@ final class RepositoryViewModel: ObservableObject {
             errorMessage = (error as? LocalizedError)?.errorDescription ?? error.localizedDescription
             showError = true
         }
-    }
-}
+    } //: FUNC SEARCH NEXT PAGE
+} //: CLASS REPOSITORY VIEWMODEL
 

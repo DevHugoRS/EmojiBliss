@@ -59,7 +59,7 @@ class CoreDataManager {
             print("Erro Searching for Emojis: \(error.localizedDescription)")
             return []
         }
-    }
+    } //: FUNC SEARCH EMOJIS
     
     func clearEmojis() {
         let requisition: NSFetchRequest<NSFetchRequestResult> = EmojiEntity.fetchRequest()
@@ -76,8 +76,6 @@ class CoreDataManager {
 
 extension CoreDataManager {
     func saveAvatar(_ avatar: UserAvatar) {
-//        let existing = searchAvatarById(avatar.id)
-//        if existing != nil { return }
         let requisition: NSFetchRequest<AvatarEntity> = AvatarEntity.fetchRequest()
         requisition.predicate = NSPredicate(format: "id == %d", avatar.id)
         requisition.fetchLimit = 1

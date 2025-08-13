@@ -48,6 +48,7 @@ class AvatarService {
             throw URLError(.badServerResponse)
         }
         
+        //:  Status code handling
         switch http.statusCode {
         case 200:
             break

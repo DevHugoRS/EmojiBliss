@@ -50,5 +50,5 @@ final class RepositoryService {
         default:
             throw RepositoryError.http(http.statusCode)
         }
-    }
-}
+    } //: FUNC SEARCH REPOSITORY
+} //: CLASS REPOSITORY SERVICE

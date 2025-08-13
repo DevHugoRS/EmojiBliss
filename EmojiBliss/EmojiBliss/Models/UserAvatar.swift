@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct UserAvatar: Identifiable, Codable, Equatable { //: Busca o Avatar
+struct UserAvatar: Identifiable, Codable, Equatable {
     let id: Int
     let login: String
     let avatarUrl: String

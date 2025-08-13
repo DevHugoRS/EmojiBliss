@@ -32,7 +32,7 @@ class AvatarViewModel: ObservableObject {
         isLoading = true
         defer { isLoading = false }
         
-        //: 1. Check cache
+        // MARK: - 1. Check cache
         if let cached = CoreDataManager.shared.searchAvatar()
             .first(where: { $0.login.lowercased() == searchUsername.lowercased() }) {
             
@@ -43,7 +43,7 @@ class AvatarViewModel: ObservableObject {
             return
         }
         
-        //: 2. Fetch API if no cache
+        // MARK: - 2. Fetch API if no cache
         do {
             let user = try await service.searchAvatar(username: username, token: token)
             CoreDataManager.shared.saveAvatar(user)
@@ -55,7 +55,6 @@ class AvatarViewModel: ObservableObject {
             errorMessage = (error as? LocalizedError)?.errorDescription ?? error.localizedDescription
             showError = true
         }
-        //: 3 Save to Core Data
         
     } //: FUNC SEARCH USER
     

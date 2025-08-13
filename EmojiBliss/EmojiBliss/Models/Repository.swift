@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Repository: Identifiable, Codable, Equatable { // Repositorio Apple
+struct Repository: Identifiable, Codable, Equatable {
     let id: Int
     let fullName: String
     let isPrivate: Bool

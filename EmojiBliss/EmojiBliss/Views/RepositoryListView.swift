@@ -28,7 +28,7 @@ struct RepositoryListView: View {
                         Task { await viewModel.searchNextPage() }
                     }
                 }
-            }
+            } //: LOOP
             
             if viewModel.isLoading {
                 ProgressView("Loading…")
