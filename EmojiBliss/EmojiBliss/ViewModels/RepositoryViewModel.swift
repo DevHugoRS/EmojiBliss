@@ -46,3 +46,21 @@ final class RepositoryViewModel: ObservableObject {
     } //: FUNC SEARCH NEXT PAGE
 } //: CLASS REPOSITORY VIEWMODEL
 
+/**
+ 
+ E o RepositoryViewModel. Bem, este lida com aquele desafio clássico: listas que
+ podem ser enormes. Não queremos carregar tudo de uma vez. Paginação, portanto. Ele controla o estado da
+ paginação, qual a página atual, current page, quantos itens por página, per page, aqui está fixo em 10, e o
+ indicador has more, para saber se a API ainda tem mais coisas para dar. A função search next page é a chave.
+ 
+ Só executa se não estiver já a carregar, is loading é falso, e se has more for verdadeiro. Aí marca is loading
+ como true para mostrar o indicador na UI, chama o repository service para buscar a página seguinte.Um
+ ponto importante, se a API devolver menos itens do que os pedidos per page, ele percebe que chegou ao fim
+ e mete has more a falso. Sim, para não continuar a pedir.
+ 
+ ele filtra aqueles cujo ID já existe na lista. Isto evita duplicados caso
+ haja alguma sobreposição entre chamadas.
+ 
+ 
+ 
+**/

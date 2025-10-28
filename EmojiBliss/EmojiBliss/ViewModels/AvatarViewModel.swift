@@ -65,3 +65,23 @@ class AvatarViewModel: ObservableObject {
         }
     } //: FUNC DELETE AVATAR
 }
+
+
+/**
+ 
+Funcao SearchUser
+ meu chash fist primeiro verifica se o nome do utilizador esta vazio. antes de verificar meu CoreDataManager, se sim ok tudo bem. pega o avatar e adiciona a lista.
+ se nao estiver no cach entao ele solicita a AvatarService para ir na API do git
+ Se a API responder bem, o view model não o adiciona logo à lista. Primeiro, guardam no cache
+ local, core data manager.shared.saveavatar, só depois é que o adiciona à lista de published. Isto garante que
+ da próxima vez que se pesquisar por este utilizador, a resposta vem do cache. E claro, tem funções para
+ carregar todos os avatares guardados quando a vista aparece, load avatars, e para apagar um, delete avatar,
+ que o remove tanto do cache como da lista na UI, mantém tudo sincronizado.
+ 
+ E trata os erros da API,
+ atualizando o estado, show error, error message, para a UI poder mostrar um alerta. Muito bem pensado
+ 
+ 
+ -> EmojiViewModel
+ 
+ **/

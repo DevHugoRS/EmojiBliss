@@ -7,6 +7,10 @@
 
 import CoreData
 
+
+///Inicialização do CoreDataManager: Uma instância singleton de CoreDataManager é criada, inicializando o NSPersistentContainer com o nome "EmojiBliss". Este gerenciador é responsável por todas as operações de persistência de dados.
+///Tratamento de Erros na Inicialização do Core Data: Se houver um erro ao carregar os persistent stores, o aplicativo falha (fatalError).
+///Método saveCondition(): Um método é estabelecido para salvar quaisquer mudanças no contexto de visualização do Core Data, com tratamento de erros básico.
 class CoreDataManager {
     static let shared = CoreDataManager()
     
@@ -128,3 +132,19 @@ extension CoreDataManager {
         }
     } //: FUNC DELETE AVATAR
 }
+
+/**
+ 
+ Core Data a atuar como um cache local inteligente e persistente, crucial para performance e uso
+offline. E serviços dedicados que encapsulam a complexidade da comunicação de rede com async/await,
+incluindo o tratamento robusto e específico de erros. Sim, e se dermos um passo atrás, vemos padrões
+arquiteturais que são muito relevantes no desenvolvimento iOS moderno. A estratégia Cache First,
+implementada nos ViewModels, é um pilar para criar aplicações que parecem rápidas e que funcionam
+mesmo com conectividade intermitente. O async/await do Swift realmente transformou a forma como
+escrevemos código assíncrono, tornou-o mais seguro e legível, e os detalhes contam: o uso de coding keys
+para mapear JSON, a definição de números específicos, AvatarError, RepositoryError, a escolha de NSPatch
+da lite request para eficiência... Tudo isto demonstra a atenção à qualidade e à manutenção do código. Os
+ViewModels a coordenarem o cachê e a rede e a atualizarem a UI via @Published são mesmo o centro
+nevrálgico desta arquitetura reativa.
+ 
+ */

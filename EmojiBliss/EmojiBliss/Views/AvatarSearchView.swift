@@ -59,3 +59,16 @@ struct AvatarSearchView: View {
 #Preview {
     AvatarSearchView()
 }
+
+/**  AvatarSearchView, e é bastante direta. Tem um campo de texto para o nome do utilizador, um botão "search" e uma lista
+ para mostrar os resultados. E o que posso da destaque o uso do async image, sabe? Em vez de
+ bloquear tudo enquanto carrega a imagem do avatar. Sim, isso é crucial. Exato. Ele mostra um indicador de
+ progresso, aquele progress view, e carrega a imagem por trás. Isso faz uma diferença brutal na fluidez,
+ principalmente se a net estiver mais lenta.
+ 
+ Bom a gestao do estado fica por conta da AvatarViewModel e esta ligada com @StateObject ou at StateObject
+ 
+ 
+ ->  AvatarListView 
+ 
+ **/

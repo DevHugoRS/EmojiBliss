@@ -47,3 +47,11 @@ struct AvatarListView: View {
 #Preview {
     AvatarListView()
 }
+
+/**
+ Aqui de forma bem parecida temos AvatarListView, é um pouco mais simples por que so lista os avatares que ja estao guardados locamente.
+ Uso o AsyncImage para manter a consistencia, aqui um toque apaga o avatar, e usei withAnimation para fazer uma remocao suave
+ 
+ -> RondomEmojiView
+ 
+**/

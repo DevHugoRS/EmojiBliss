@@ -7,6 +7,8 @@
 
 import Foundation
 
+
+
 enum AvatarError: LocalizedError {
     case emptyUserName
     case notFound
